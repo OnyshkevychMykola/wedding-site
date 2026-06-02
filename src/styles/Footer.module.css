@@ -1,0 +1,9 @@
+.footer {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 48px 24px 64px;
+}
+.emoji { font-size: 36px; margin-bottom: 12px; }
+.text { font-size: 13px; color: var(--text-dim); }
+.text strong { color: rgba(255, 255, 255, 0.5); }

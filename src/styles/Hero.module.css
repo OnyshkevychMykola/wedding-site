@@ -1,0 +1,75 @@
+.hero {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 24px;
+}
+
+.emoji {
+  font-size: 52px;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 0 24px rgba(224, 64, 251, 0.55));
+}
+
+.names {
+  font-size: clamp(44px, 11vw, 84px);
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1;
+  margin-bottom: 22px;
+}
+
+.amp {
+  color: rgba(255, 255, 255, 0.25);
+  margin: 0 14px;
+}
+
+.tagline {
+  font-size: 16px;
+  color: var(--text-muted);
+  font-style: italic;
+  max-width: 400px;
+  line-height: 1.7;
+  margin-bottom: 32px;
+}
+
+.datePill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 28px;
+  border-radius: var(--radius-pill);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.scrollHint {
+  position: absolute;
+  bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-dim);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.scrollArrow {
+  width: 18px;
+  height: 18px;
+  border-right: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.3);
+  transform: rotate(45deg);
+  animation: bounce-arrow 2s ease-in-out infinite;
+}

@@ -1,0 +1,12 @@
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 10%, var(--aurora-1) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 90% 20%, var(--aurora-2) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 50% 80%, var(--aurora-3) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 80% 70%, var(--aurora-4) 0%, transparent 50%);
+  animation: aurora-pulse 10s ease-in-out infinite alternate;
+}

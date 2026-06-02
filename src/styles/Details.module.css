@@ -1,0 +1,10 @@
+.title { font-size: 28px; font-weight: 700; margin-bottom: 24px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card { padding: 28px; text-align: center; }
+.icon { font-size: 36px; margin-bottom: 12px; }
+.card h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.card p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+@media (max-width: 540px) {
+  .grid { grid-template-columns: 1fr; }
+}

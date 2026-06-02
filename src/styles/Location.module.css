@@ -1,0 +1,26 @@
+.title { font-size: 28px; font-weight: 700; margin-bottom: 24px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.card { padding: 24px; }
+.icon { font-size: 32px; margin-bottom: 12px; }
+.card h4 { font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+.card p { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+
+.mapBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 14px;
+  padding: 7px 16px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.mapBtn:hover { background: rgba(255, 255, 255, 0.14); }
+
+@media (max-width: 540px) {
+  .grid { grid-template-columns: 1fr; }
+}

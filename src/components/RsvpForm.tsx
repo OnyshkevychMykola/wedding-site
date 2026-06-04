@@ -44,7 +44,7 @@ export default function RsvpForm() {
     return (
       <>
         {showBalloons && <BalloonCelebration onDone={handleBalloonsDone} />}
-        <section className="section-container">
+        <section className="section-container" style={{ textAlign: 'center' }}>
           <p className={styles.successText}>
             Дякуємо! Ми отримали твою відповідь.<br />
             Чекаємо вас на нашому святі! 🎉

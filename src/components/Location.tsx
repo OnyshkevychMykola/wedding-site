@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import styles from '../styles/Location.module.css'
-import AnimatedLabel from './AnimatedLabel'
 
 const locations = [
   {
@@ -28,7 +27,11 @@ export default function Location() {
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.7 }}
       >
-        <AnimatedLabel>Локації</AnimatedLabel>
+        <div className={styles.headingRow}>
+          <div className={styles.headingLine} />
+          <h2 className={styles.heading}>Локації</h2>
+          <div className={styles.headingLine} />
+        </div>
       </motion.div>
 
       <div className={styles.list}>
@@ -41,8 +44,7 @@ export default function Location() {
             viewport={{ once: true, margin: '-40px' }}
             transition={{ duration: 0.6, delay: i * 0.12 }}
             whileHover={{
-              y: -8,
-              boxShadow: '0 16px 48px rgba(180,120,80,0.20)',
+              y: -6,
               transition: { type: 'spring', stiffness: 300, damping: 24 },
             }}
           >

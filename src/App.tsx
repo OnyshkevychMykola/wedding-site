@@ -11,7 +11,6 @@ export default function App() {
   return (
     <main>
       <Hero />
-      <div className="divider" />
       <Story />
       <div className="divider" />
       <DateSection />
@@ -21,7 +20,6 @@ export default function App() {
       <Timeline />
       <div className="divider" />
       <Details />
-      <div className="divider" />
       <RsvpForm />
       <Footer />
     </main>

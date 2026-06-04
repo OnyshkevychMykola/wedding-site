@@ -1,21 +1,68 @@
-.calendar {
-  background: #fff;
-  border-radius: var(--radius-card);
-  padding: 28px 24px 24px;
-  max-width: 340px;
-  box-shadow: 0 2px 20px rgba(180, 120, 80, 0.08);
+/* ── Heading ── */
+.headingRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
 }
 
+.headingLine {
+  flex: 1;
+  height: 1px;
+  background: rgba(61, 39, 20, 0.22);
+}
+
+.heading {
+  font-family: var(--font-script);
+  font-size: clamp(24px, 5vw, 30px);
+  font-weight: 400;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* ── Calendar wrapper (centers the card) ── */
+.calendarWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* ── Calendar card ── */
+.calendar {
+  background: #fff8ee;
+  border-radius: 4px;
+  padding: 28px 24px 24px;
+  width: 100%;
+  max-width: 340px;
+  box-shadow:
+    0 2px 8px rgba(180, 120, 80, 0.12),
+    0 8px 32px rgba(180, 120, 80, 0.08);
+  position: relative;
+}
+
+/* ── Pin ── */
+.pin {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #F48C8C;
+  box-shadow: 0 2px 5px rgba(180, 60, 60, 0.35);
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* ── Month ── */
 .month {
-  font-family: var(--font-serif);
-  font-size: 18px;
-  font-weight: 600;
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 700;
   color: var(--text);
   text-align: center;
-  margin-bottom: 20px;
-  letter-spacing: 0.05em;
+  margin-bottom: 18px;
 }
 
+/* ── Grid ── */
 .grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -25,90 +72,73 @@
 
 .dayName {
   font-family: var(--font-body);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.5px;
-  color: var(--text-light);
-  padding: 4px 0 8px;
-  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 4px 0 10px;
 }
 
 .day {
   font-family: var(--font-body);
   font-size: 13px;
-  font-weight: 300;
+  font-weight: 400;
   color: var(--text);
   width: 36px;
   height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
   margin: 0 auto;
 }
 
 .day.prev {
-  color: #ccc;
+  color: rgba(61, 39, 20, 0.22);
 }
 
+/* ── Heart highlight ── */
 .day.highlighted {
-  background: var(--accent);
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 92'%3E%3Cpath d='M50 84 C50 84 4 52 4 24 C4 11 13 3 23 3 C33 3 43 9 50 19 C57 9 67 3 77 3 C87 3 96 11 96 24 C96 52 50 84 50 84Z' fill='%23F48C8C'/%3E%3C/svg%3E") center/contain no-repeat;
+  border-radius: 0;
   color: #fff;
   font-weight: 700;
-  position: relative;
+  width: 44px;
+  height: 40px;
+  animation: heartbeat 1.6s ease-in-out infinite;
 }
 
-.day.highlighted::after {
-  content: '♥';
-  position: absolute;
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 9px;
-  color: var(--accent);
+@keyframes heartbeat {
+  0%   { transform: scale(1); }
+  14%  { transform: scale(1.2); }
+  28%  { transform: scale(1); }
+  42%  { transform: scale(1.15); }
+  56%  { transform: scale(1); }
+  100% { transform: scale(1); }
 }
 
+/* ── Date + lucky ── */
 .weddingDate {
   font-family: var(--font-serif);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 600;
   color: var(--text);
   text-align: center;
   margin-top: 20px;
+  line-height: 1.4;
 }
 
 .weddingDate span {
   font-weight: 400;
   font-style: italic;
-  font-size: 16px;
   color: var(--text-muted);
 }
 
 .lucky {
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 300;
   color: var(--text-light);
   text-align: center;
-  margin-top: 10px;
+  margin-top: 14px;
   font-style: italic;
   line-height: 1.5;
-}
-
-@keyframes pulseRing {
-  0%   { transform: translate(-50%, -50%) scale(1);    opacity: 0.55; }
-  100% { transform: translate(-50%, -50%) scale(1.75); opacity: 0; }
-}
-
-.day.highlighted::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 1.5px solid var(--accent);
-  animation: pulseRing 2s ease-out infinite;
-  pointer-events: none;
 }

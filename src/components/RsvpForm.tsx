@@ -7,6 +7,12 @@ import BalloonCelebration from './BalloonCelebration'
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
+const CHIPS: { value: Attendance; label: string }[] = [
+  { value: 'yes',   label: 'Стопроц приїду :D' },
+  { value: 'maybe', label: 'Ще не впевнений/а чи вийде приїхати' },
+  { value: 'no',    label: 'Нажаль не вийде приїхати :(' },
+]
+
 export default function RsvpForm() {
   const [form, setForm] = useState<RsvpPayload>({
     name: '',
@@ -44,61 +50,67 @@ export default function RsvpForm() {
     return (
       <>
         {showBalloons && <BalloonCelebration onDone={handleBalloonsDone} />}
-        <section className="section-container" style={{ textAlign: 'center' }}>
-          <p className={styles.successText}>
-            Дякуємо! Ми отримали твою відповідь.<br />
-            Чекаємо вас на нашому святі! 🎉
-          </p>
+        <section className={styles.section}>
+          <div className={styles.container} style={{ textAlign: 'center' }}>
+            <p className={styles.successText}>
+              Дякуємо! Ми отримали твою відповідь.<br />
+              Чекаємо вас на нашому святі! 🎉
+            </p>
+          </div>
         </section>
       </>
     )
   }
 
   return (
-    <section className="section-container">
+    <section className={styles.section}>
       <motion.div
+        className={styles.container}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.7 }}
       >
-        <p className="section-label">Чекаємо на вашу відповідь</p>
+        <div className={styles.headingRow}>
+          <div className={styles.headingLine} />
+          <h2 className={styles.heading}>Чекаємо на вашу відповідь</h2>
+          <div className={styles.headingLine} />
+        </div>
+
         <p className={styles.deadline}>
           Будь ласка надайте відповідь до <strong>20 серпня</strong>
         </p>
 
         <form className={styles.form} onSubmit={handleSubmit} noValidate>
           <div className={styles.field}>
-            <label htmlFor="rsvp-name">Ім'я та Прізвище</label>
             <input
               id="rsvp-name"
               type="text"
-              placeholder="Іваненко Іван"
+              placeholder="Ім'я та Прізвище"
               required
               value={form.name}
               onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
             />
           </div>
 
-          <div className={styles.field}>
-            <label htmlFor="rsvp-attendance">Ваша відповідь</label>
-            <select
-              id="rsvp-attendance"
-              value={form.attendance}
-              onChange={e => setForm(f => ({ ...f, attendance: e.target.value as Attendance }))}
-            >
-              <option value="yes">Стопроц приїду :D</option>
-              <option value="maybe">Ще не впевнений/а чи вийде приїхати</option>
-              <option value="no">Нажаль не вийде приїхати :(</option>
-            </select>
+          <div className={styles.chips}>
+            {CHIPS.map(chip => (
+              <button
+                key={chip.value}
+                type="button"
+                className={`${styles.chip} ${form.attendance === chip.value ? styles.chipActive : ''}`}
+                onClick={() => setForm(f => ({ ...f, attendance: chip.value }))}
+              >
+                {chip.label}
+              </button>
+            ))}
           </div>
 
           <div className={styles.field}>
-            <label htmlFor="rsvp-comment">Коментар (необов'язково)</label>
             <textarea
               id="rsvp-comment"
-              rows={3}
-              placeholder="Побажання, алергії, запитання…"
+              rows={2}
+              placeholder="Коментар (необов'язково)"
               value={form.comment}
               onChange={e => setForm(f => ({ ...f, comment: e.target.value }))}
             />
@@ -109,7 +121,7 @@ export default function RsvpForm() {
           )}
 
           <button className={styles.submitBtn} type="submit" disabled={status === 'loading'}>
-            {status === 'loading' ? 'Надсилаємо…' : 'Відправити відповідь 💌'}
+            {status === 'loading' ? 'Надсилаємо…' : 'ВІДПРАВИТИ ВІДПОВІДЬ 💌'}
           </button>
         </form>
       </motion.div>

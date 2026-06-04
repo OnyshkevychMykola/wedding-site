@@ -1,3 +1,13 @@
+/* Drop Coronet.ttf (or .woff2) into public/fonts/ to activate */
+@font-face {
+  font-family: 'Coronet';
+  src: url('/fonts/Coronet.ttf') format('truetype'),
+       url('/fonts/Coronet.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --bg: #faf4ec;
   --bg-section: #f5ede0;
@@ -13,7 +23,7 @@
   --section-max: 680px;
   --radius-card: 16px;
   --radius-btn: 4px;
-  --font-script: 'Dancing Script', cursive;
+  --font-script: 'Coronet', 'Dancing Script', cursive;
   --font-serif: 'Cormorant Garamond', serif;
   --font-body: 'Lato', sans-serif;
 }

@@ -1,13 +1,10 @@
 import { motion } from 'framer-motion'
 import styles from '../styles/DateSection.module.css'
-import AnimatedLabel from './AnimatedLabel'
 
 const WEDDING_DAY = 13
 const MONTH = 'Вересень 2026'
 const DAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Нд']
 
-// September 2026: Mon Aug 31 fills first cell (prev month), Sep 1 = Tue
-// Sep 13 = Sunday (last column of second row)
 const CELLS: Array<{ day: number; prev?: boolean }> = [
   { day: 31, prev: true },
   { day: 1 }, { day: 2 }, { day: 3 }, { day: 4 }, { day: 5 }, { day: 6 },
@@ -26,33 +23,42 @@ export default function DateSection() {
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.7 }}
       >
-        <AnimatedLabel>Дата</AnimatedLabel>
-        <div className={styles.calendar}>
-          <p className={styles.month}>{MONTH}</p>
-          <div className={styles.grid}>
-            {DAYS.map(d => (
-              <span key={d} className={styles.dayName}>{d}</span>
-            ))}
-            {CELLS.map((cell, i) => (
-              <span
-                key={i}
-                className={[
-                  styles.day,
-                  cell.prev ? styles.prev : '',
-                  cell.day === WEDDING_DAY && !cell.prev ? styles.highlighted : '',
-                ].join(' ')}
-              >
-                {cell.day}
-              </span>
-            ))}
-          </div>
-          <p className={styles.weddingDate}>
-            13 Вересня <span>(Неділя)</span>
-          </p>
-          <p className={styles.lucky}>
-            Не лякайтеся числа 13 — для нас воно стало щасливим 🙂
-          </p>
+        <div className={styles.headingRow}>
+          <div className={styles.headingLine} />
+          <h2 className={styles.heading}>Дата</h2>
+          <div className={styles.headingLine} />
         </div>
+
+        <div className={styles.calendarWrapper}>
+          <div className={styles.calendar}>
+            <div className={styles.pin} />
+            <p className={styles.month}>{MONTH}</p>
+            <div className={styles.grid}>
+              {DAYS.map(d => (
+                <span key={d} className={styles.dayName}>{d}</span>
+              ))}
+              {CELLS.map((cell, i) => (
+                <span
+                  key={i}
+                  className={[
+                    styles.day,
+                    cell.prev ? styles.prev : '',
+                    cell.day === WEDDING_DAY && !cell.prev ? styles.highlighted : '',
+                  ].join(' ')}
+                >
+                  {cell.day}
+                </span>
+              ))}
+            </div>
+            <p className={styles.weddingDate}>
+              13 Вересня <span>(Неділя)</span> 14:00
+            </p>
+          </div>
+        </div>
+
+        <p className={styles.lucky}>
+          Не лякайтеся числа 13, для нас воно стало щасливим)
+        </p>
       </motion.div>
     </section>
   )

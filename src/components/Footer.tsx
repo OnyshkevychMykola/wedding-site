@@ -4,13 +4,9 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className="divider" style={{ marginBottom: 48 }} />
-      <div className={styles.emoji}>💕</div>
-      <p className={styles.text}>
-        З любов'ю, <strong>Михайло та Юлія</strong>
-      </p>
-      <p className={styles.text} style={{ marginTop: 4 }}>
-        06 · 06 · 2026 · Львів
-      </p>
+      <p className={styles.thanks}>Чекаємо вас на нашому святі</p>
+      <p className={styles.subtitle}>з любов'ю</p>
+      <p className={styles.names}>Микола та Діана</p>
     </footer>
   )
 }

@@ -1,33 +1,29 @@
-import AuroraBackground from './components/AuroraBackground'
 import Hero from './components/Hero'
 import Story from './components/Story'
-import Timeline from './components/Timeline'
-import Gallery from './components/Gallery'
+import DateSection from './components/DateSection'
 import Location from './components/Location'
+import Timeline from './components/Timeline'
 import Details from './components/Details'
 import RsvpForm from './components/RsvpForm'
 import Footer from './components/Footer'
 
 export default function App() {
   return (
-    <>
-      <AuroraBackground />
-      <main style={{ position: 'relative', zIndex: 1 }}>
-        <Hero />
-        <div className="divider" />
-        <Story />
-        <div className="divider" />
-        <Timeline />
-        <div className="divider" />
-        <Gallery />
-        <div className="divider" />
-        <Location />
-        <div className="divider" />
-        <Details />
-        <div className="divider" />
-        <RsvpForm />
-      </main>
+    <main>
+      <Hero />
+      <div className="divider" />
+      <Story />
+      <div className="divider" />
+      <DateSection />
+      <div className="divider" />
+      <Location />
+      <div className="divider" />
+      <Timeline />
+      <div className="divider" />
+      <Details />
+      <div className="divider" />
+      <RsvpForm />
       <Footer />
-    </>
+    </main>
   )
 }

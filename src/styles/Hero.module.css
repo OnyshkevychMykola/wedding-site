@@ -1,75 +1,224 @@
 .hero {
-  position: relative;
-  z-index: 1;
-  min-height: 100svh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 40px 24px;
+  background: var(--bg);
+  padding-bottom: 64px;
 }
 
-.emoji {
-  font-size: 52px;
-  margin-bottom: 20px;
-  filter: drop-shadow(0 0 24px rgba(224, 64, 251, 0.55));
+/* ── Desktop layout ── */
+.heroInner {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0;
+}
+
+.decoPanel {
+  display: none;
+}
+
+/* ── Photo ── */
+.photoWrapper {
+  width: 100%;
+  max-width: 480px;
+  aspect-ratio: 3 / 4;
+  max-height: 85svh;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  display: block;
+}
+
+.photoOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(250, 244, 236, 0) 55%,
+    rgba(250, 244, 236, 0.75) 80%,
+    rgba(250, 244, 236, 1) 100%
+  );
+}
+
+/* ── Text under photo ── */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 32px 24px 0;
+  text-align: center;
 }
 
 .names {
-  font-size: clamp(44px, 11vw, 84px);
-  font-weight: 800;
-  letter-spacing: -2px;
-  line-height: 1;
-  margin-bottom: 22px;
-}
-
-.amp {
-  color: rgba(255, 255, 255, 0.25);
-  margin: 0 14px;
+  font-family: var(--font-script);
+  font-size: clamp(48px, 12vw, 88px);
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.1;
 }
 
 .tagline {
-  font-size: 16px;
-  color: var(--text-muted);
+  font-family: var(--font-serif);
+  font-size: clamp(14px, 3vw, 17px);
   font-style: italic;
-  max-width: 400px;
+  color: var(--text-muted);
+  max-width: 320px;
   line-height: 1.7;
-  margin-bottom: 32px;
 }
 
-.datePill {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 28px;
-  border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(12px);
-  font-size: 14px;
-  letter-spacing: 2px;
-  color: rgba(255, 255, 255, 0.8);
+.date {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 300;
+  letter-spacing: 3px;
+  color: var(--text-light);
 }
 
 .scrollHint {
-  position: absolute;
-  bottom: 32px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  color: var(--text-dim);
-  font-size: 10px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  margin-top: 24px;
+  color: var(--text-light);
+  animation: bounce-arrow 2.2s ease-in-out infinite;
+  cursor: pointer;
+  user-select: none;
 }
 
-.scrollArrow {
-  width: 18px;
-  height: 18px;
-  border-right: 1.5px solid rgba(255, 255, 255, 0.3);
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.3);
-  transform: rotate(45deg);
-  animation: bounce-arrow 2s ease-in-out infinite;
+.scrollHintDesktop {
+  display: none;
+}
+
+.scrollIcon {
+  width: 26px;
+  height: 26px;
+}
+
+/* ── Tablet: photo height cap (before deco panels appear) ── */
+@media (min-width: 860px) and (max-width: 1023px) {
+  .photoWrapper {
+    max-height: 60svh;
+  }
+}
+
+/* ── Desktop: side decorations ── */
+@media (min-width: 1024px) {
+  .hero {
+    padding-bottom: 0;
+  }
+
+  .heroInner {
+    align-items: center;
+    padding: 56px 0;
+  }
+
+  .decoPanel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    padding: 48px 32px;
+    gap: 28px;
+    align-self: stretch;
+  }
+
+  .decoPanelLeft {
+    border-right: 1px solid var(--divider);
+  }
+
+  .decoPanelRight {
+    border-left: 1px solid var(--divider);
+  }
+
+  .decoName {
+    font-family: var(--font-script);
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 600;
+    color: var(--text);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    letter-spacing: 4px;
+  }
+
+  .decoPanelLeft .decoName {
+    transform: rotate(180deg);
+  }
+
+  .decoLine {
+    width: 1px;
+    flex: 1;
+    max-height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--divider), transparent);
+  }
+
+  .decoOrnament {
+    font-size: 20px;
+    opacity: 0.5;
+    color: var(--accent);
+  }
+
+  .decoDate {
+    font-family: var(--font-body);
+    font-size: 10px;
+    font-weight: 300;
+    letter-spacing: 3px;
+    color: var(--text-light);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+  }
+
+  .decoPanelRight .decoDate {
+    transform: rotate(0deg);
+  }
+
+  /* Hide below-photo content on desktop */
+  .content {
+    display: none;
+  }
+
+  /* Photo fills full height on desktop */
+  .photoWrapper {
+    max-width: 460px;
+    max-height: 80svh;
+    aspect-ratio: 3 / 4;
+  }
+
+  /* Scroll hint pinned bottom — use desktop-specific animation to preserve translateX */
+  .scrollHintDesktop {
+    display: block;
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0;
+    color: var(--text-light);
+    cursor: pointer;
+    user-select: none;
+    animation: bounce-arrow-desktop 2.2s ease-in-out infinite;
+  }
+
+  .heroInner {
+    position: relative;
+  }
+}
+
+@media (min-width: 1280px) {
+  .photoWrapper {
+    max-width: 540px;
+    max-height: 90svh;
+  }
+}
+
+@keyframes bounce-arrow-desktop {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(8px); }
 }

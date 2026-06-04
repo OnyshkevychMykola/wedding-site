@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import axios from 'axios'
 import styles from '../styles/RsvpForm.module.css'
 import type { RsvpPayload, Attendance } from '../types'
+import BalloonCelebration from './BalloonCelebration'
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
@@ -15,6 +16,7 @@ export default function RsvpForm() {
   })
   const [status, setStatus] = useState<Status>('idle')
   const [errorMsg, setErrorMsg] = useState('')
+  const [showBalloons, setShowBalloons] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -24,6 +26,7 @@ export default function RsvpForm() {
     try {
       await axios.post('/api/rsvp', form)
       setStatus('success')
+      setShowBalloons(true)
     } catch (err: unknown) {
       const msg =
         axios.isAxiosError(err) && err.response?.data?.error
@@ -31,75 +34,62 @@ export default function RsvpForm() {
           : 'Щось пішло не так. Спробуй ще раз.'
       setErrorMsg(msg)
       setStatus('error')
+      setShowBalloons(true)
     }
   }
 
+  const handleBalloonsDone = useCallback(() => setShowBalloons(false), [])
+
   if (status === 'success') {
     return (
-      <section className="section-container">
-        <div className={`${styles.formCard} glass`}>
-          <div className={styles.success}>
-            <span className={styles.bigEmoji}>💌</span>
+      <>
+        {showBalloons && <BalloonCelebration onDone={handleBalloonsDone} />}
+        <section className="section-container">
+          <p className={styles.successText}>
             Дякуємо! Ми отримали твою відповідь.<br />
-            Чекаємо з нетерпінням! 💕
-          </div>
-        </div>
-      </section>
+            Чекаємо вас на нашому святі! 🎉
+          </p>
+        </section>
+      </>
     )
   }
 
   return (
     <section className="section-container">
       <motion.div
-        initial={{ opacity: 0, y: 24 }}
+        initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-60px' }}
         transition={{ duration: 0.7 }}
       >
-        <p className="section-label">💌 rsvp</p>
-        <h2 className={styles.title}>
-          Підтверди <span className="gradient-text">присутність</span>
-        </h2>
+        <p className="section-label">Чекаємо на вашу відповідь</p>
         <p className={styles.deadline}>
-          Будь ласка, підтвердь до <strong>01.05.2026</strong>
+          Будь ласка надайте відповідь до <strong>20 серпня</strong>
         </p>
 
-        <form className={`${styles.formCard} glass`} onSubmit={handleSubmit} noValidate>
-          <div className={styles.row}>
-            <div className={styles.field}>
-              <label htmlFor="rsvp-name">Ім'я та прізвище</label>
-              <input
-                id="rsvp-name"
-                type="text"
-                placeholder="Іваненко Іван"
-                required
-                value={form.name}
-                onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-              />
-            </div>
-            <div className={styles.field}>
-              <label htmlFor="rsvp-guests">Кількість гостей</label>
-              <input
-                id="rsvp-guests"
-                type="number"
-                min={1}
-                max={10}
-                value={form.guests}
-                onChange={e => setForm(f => ({ ...f, guests: Number(e.target.value) }))}
-              />
-            </div>
+        <form className={styles.form} onSubmit={handleSubmit} noValidate>
+          <div className={styles.field}>
+            <label htmlFor="rsvp-name">Ім'я та Прізвище</label>
+            <input
+              id="rsvp-name"
+              type="text"
+              placeholder="Іваненко Іван"
+              required
+              value={form.name}
+              onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+            />
           </div>
 
           <div className={styles.field}>
-            <label htmlFor="rsvp-attendance">Чи зможете бути присутні?</label>
+            <label htmlFor="rsvp-attendance">Ваша відповідь</label>
             <select
               id="rsvp-attendance"
               value={form.attendance}
               onChange={e => setForm(f => ({ ...f, attendance: e.target.value as Attendance }))}
             >
-              <option value="yes">✅ Так, зможу!</option>
-              <option value="maybe">🤔 Повідомлю пізніше</option>
-              <option value="no">😔 Не зможу прийти</option>
+              <option value="yes">Стопроц приїду :D</option>
+              <option value="maybe">Ще не впевнений/а чи вийде приїхати</option>
+              <option value="no">Нажаль не вийде приїхати :(</option>
             </select>
           </div>
 
@@ -115,11 +105,11 @@ export default function RsvpForm() {
           </div>
 
           {status === 'error' && (
-            <div className={styles.errorMsg}>⚠️ {errorMsg}</div>
+            <p className={styles.errorMsg}>{errorMsg}</p>
           )}
 
           <button className={styles.submitBtn} type="submit" disabled={status === 'loading'}>
-            {status === 'loading' ? '⏳ Надсилаємо…' : '💌 Надіслати відповідь'}
+            {status === 'loading' ? 'Надсилаємо…' : 'Відправити відповідь 💌'}
           </button>
         </form>
       </motion.div>

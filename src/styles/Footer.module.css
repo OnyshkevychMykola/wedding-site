@@ -1,9 +1,29 @@
 .footer {
-  position: relative;
-  z-index: 1;
   text-align: center;
-  padding: 48px 24px 64px;
+  padding: 0 24px 60px;
 }
-.emoji { font-size: 36px; margin-bottom: 12px; }
-.text { font-size: 13px; color: var(--text-dim); }
-.text strong { color: rgba(255, 255, 255, 0.5); }
+
+.thanks {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: var(--text-light);
+  margin-bottom: 8px;
+  text-transform: lowercase;
+}
+
+.names {
+  font-family: var(--font-script);
+  font-size: 36px;
+  font-weight: 600;
+  color: var(--text);
+}

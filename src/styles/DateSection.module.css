@@ -1,0 +1,114 @@
+.calendar {
+  background: #fff;
+  border-radius: var(--radius-card);
+  padding: 28px 24px 24px;
+  max-width: 340px;
+  box-shadow: 0 2px 20px rgba(180, 120, 80, 0.08);
+}
+
+.month {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: 0.05em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  text-align: center;
+}
+
+.dayName {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text-light);
+  padding: 4px 0 8px;
+  text-transform: uppercase;
+}
+
+.day {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.day.prev {
+  color: #ccc;
+}
+
+.day.highlighted {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  position: relative;
+}
+
+.day.highlighted::after {
+  content: '♥';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 9px;
+  color: var(--accent);
+}
+
+.weddingDate {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  text-align: center;
+  margin-top: 20px;
+}
+
+.weddingDate span {
+  font-weight: 400;
+  font-style: italic;
+  font-size: 16px;
+  color: var(--text-muted);
+}
+
+.lucky {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text-light);
+  text-align: center;
+  margin-top: 10px;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+@keyframes pulseRing {
+  0%   { transform: translate(-50%, -50%) scale(1);    opacity: 0.55; }
+  100% { transform: translate(-50%, -50%) scale(1.75); opacity: 0; }
+}
+
+.day.highlighted::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  animation: pulseRing 2s ease-out infinite;
+  pointer-events: none;
+}

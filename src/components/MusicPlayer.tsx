@@ -1,19 +1,25 @@
-import { useEffect, useRef, useState } from 'react'
+import { forwardRef, useImperativeHandle, useRef, useState } from 'react'
 import styles from '../styles/MusicPlayer.module.css'
 
-export default function MusicPlayer() {
+export interface MusicPlayerRef {
+  play: () => void
+}
+
+const MusicPlayer = forwardRef<MusicPlayerRef>(function MusicPlayer(_, ref) {
   const audioRef = useRef<HTMLAudioElement>(null)
   const [muted, setMuted] = useState(false)
   const [playing, setPlaying] = useState(false)
 
-  useEffect(() => {
-    const audio = audioRef.current
-    if (!audio) return
-    audio.volume = 0.4
-    audio.play()
-      .then(() => setPlaying(true))
-      .catch(() => setPlaying(false))
-  }, [])
+  useImperativeHandle(ref, () => ({
+    play: () => {
+      const audio = audioRef.current
+      if (!audio) return
+      audio.volume = 0.4
+      audio.play()
+        .then(() => setPlaying(true))
+        .catch(() => {})
+    },
+  }))
 
   const toggle = () => {
     const audio = audioRef.current
@@ -46,7 +52,9 @@ export default function MusicPlayer() {
       </button>
     </>
   )
-}
+})
+
+export default MusicPlayer
 
 function SoundIcon() {
   return (

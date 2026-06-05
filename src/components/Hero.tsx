@@ -30,7 +30,10 @@ export default function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
       >
-        <h1 className={styles.names}>Микола та Діана</h1>
+        <h1 className={styles.names}>
+          <span>Микола та</span>
+          <span className={styles.namesDiana}>Діана</span>
+        </h1>
         <div className={styles.separator} />
         <p className={styles.tagline}>
           Запрошуємо розділити з нами<br />цей день 13.09.2026

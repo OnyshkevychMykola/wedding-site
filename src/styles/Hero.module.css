@@ -3,7 +3,8 @@
   flex-direction: column;
   align-items: center;
   background: var(--bg);
-  padding-bottom: 48px;
+  padding-bottom: 72px;
+  position: relative;
 }
 
 /* ── Photo ── */
@@ -35,6 +36,12 @@
   color: var(--text);
   line-height: 1.1;
   margin-bottom: 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.namesDiana {
+  text-align: right;
 }
 
 .separator {
@@ -60,7 +67,10 @@
 
 /* ── Scroll button ── */
 .scrollBtn {
-  margin-top: 28px;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 42px;
   height: 42px;
   border-radius: 50%;
@@ -71,7 +81,6 @@
   justify-content: center;
   color: #fff;
   cursor: pointer;
-  flex-shrink: 0;
   animation: bounce-btn 2.2s ease-in-out infinite;
 }
 
@@ -100,6 +109,12 @@
   .names {
     font-size: clamp(64px, 8vw, 108px);
     white-space: nowrap;
+    flex-direction: row;
+    gap: 0.25em;
+  }
+
+  .namesDiana {
+    text-align: left;
   }
 
   .tagline {
@@ -120,6 +135,6 @@
 }
 
 @keyframes bounce-btn {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(6px); }
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(6px); }
 }

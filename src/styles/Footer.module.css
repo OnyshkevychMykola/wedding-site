@@ -1,11 +1,34 @@
 .footer {
-  background: #3c231a;
+  position: relative;
+  background: #3c231a url('/images/desktop-footer.jpg') center / cover no-repeat;
   border-radius: 20px 20px 0 0;
   text-align: center;
   padding: 52px 24px 64px;
   display: flex;
   flex-direction: column;
   gap: 6px;
+  overflow: hidden;
+}
+
+/* Dark overlay to keep text legible over the photo */
+.footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+/* Text sits above the overlay */
+.footer > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 540px) {
+  .footer {
+    background-image: url('/images/mobile-footer.jpg');
+    background-position: center top;
+  }
 }
 
 .thanks {

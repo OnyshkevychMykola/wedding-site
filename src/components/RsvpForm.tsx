@@ -116,7 +116,10 @@ export default function RsvpForm() {
                 aria-label="Зменшити"
               >−</button>
               <span className={styles.guestsCount}>
-                {form.guests === 1 ? 'Приїду сам/сама' : `Нас буде ${form.guests}`}
+                {form.guests === 1
+                  ? 'Приїду сам/сама'
+                  : <>Нас буде <strong className={styles.guestsNumber}>{form.guests}</strong></>
+                }
               </span>
               <button
                 type="button"

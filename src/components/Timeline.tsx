@@ -2,10 +2,10 @@ import { motion } from 'framer-motion'
 import styles from '../styles/Timeline.module.css'
 
 const events = [
-  { time: '14:00', title: 'Вінчання в церкві' },
-  { time: '16:00', title: 'Збір гостей в ресторані' },
-  { time: '17:00', title: 'Банкет' },
-  { time: '23:00', title: 'Завершення вечора' },
+  { time: '14:00', title: 'Вінчання в церкві', icon: '💍' },
+  { time: '16:00', title: 'Збір гостей в ресторані', icon: '🥂' },
+  { time: '17:00', title: 'Банкет', icon: '🍽️' },
+  { time: '23:00', title: 'Завершення вечора', icon: '✨' },
 ]
 
 export default function Timeline() {
@@ -37,7 +37,7 @@ export default function Timeline() {
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.5, delay: i * 0.09 }}
               >
-                <div className={styles.square} />
+                <div className={styles.square}>{ev.icon}</div>
                 <div className={styles.content}>
                   <span className={styles.time}>{ev.time}</span>
                   <span className={styles.title}>{ev.title}</span>

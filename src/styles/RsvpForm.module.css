@@ -118,6 +118,45 @@
   background: #e07070;
 }
 
+/* ── Guests stepper ── */
+.guestsStepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  border-bottom: 1px solid rgba(61, 39, 20, 0.28);
+  padding: 8px 0;
+}
+
+.guestsStepBtn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(61, 39, 20, 0.28);
+  background: transparent;
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.guestsStepBtn:hover {
+  background: rgba(61, 39, 20, 0.06);
+}
+
+.guestsCount {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text);
+  min-width: 140px;
+  text-align: center;
+}
+
 /* ── Submit ── */
 .submitBtn {
   width: 100%;

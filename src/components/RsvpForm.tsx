@@ -7,11 +7,8 @@ import BalloonCelebration from './BalloonCelebration'
 
 type Status = 'idle' | 'loading' | 'success' | 'error'
 
-const CHIPS: { value: Attendance; label: string }[] = [
-  { value: 'yes',   label: 'Стопроц приїду :D' },
-  { value: 'maybe', label: 'Ще не впевнений/а чи вийде приїхати' },
-  { value: 'no',    label: 'Нажаль не вийде приїхати :(' },
-]
+const YES_LABEL = (guests: number) =>
+  guests > 1 ? 'Стопроц приїдемо :D' : 'Стопроц приїду :D'
 
 export default function RsvpForm() {
   const [form, setForm] = useState<RsvpPayload>({
@@ -94,7 +91,11 @@ export default function RsvpForm() {
           </div>
 
           <div className={styles.chips}>
-            {CHIPS.map(chip => (
+            {([
+              { value: 'yes'   as Attendance, label: YES_LABEL(form.guests) },
+              { value: 'maybe' as Attendance, label: 'Ще не впевнений/а чи вийде приїхати' },
+              { value: 'no'    as Attendance, label: 'Нажаль не вийде приїхати :(' },
+            ]).map(chip => (
               <button
                 key={chip.value}
                 type="button"
@@ -105,6 +106,26 @@ export default function RsvpForm() {
               </button>
             ))}
           </div>
+
+          {form.attendance !== 'no' && (
+            <div className={styles.guestsStepper}>
+              <button
+                type="button"
+                className={styles.guestsStepBtn}
+                onClick={() => setForm(f => ({ ...f, guests: Math.max(1, f.guests - 1) }))}
+                aria-label="Зменшити"
+              >−</button>
+              <span className={styles.guestsCount}>
+                {form.guests === 1 ? 'Приїду сам/сама' : `Нас буде ${form.guests}`}
+              </span>
+              <button
+                type="button"
+                className={styles.guestsStepBtn}
+                onClick={() => setForm(f => ({ ...f, guests: Math.min(20, f.guests + 1) }))}
+                aria-label="Збільшити"
+              >+</button>
+            </div>
+          )}
 
           <div className={styles.field}>
             <textarea

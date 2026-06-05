@@ -6,6 +6,7 @@ import Timeline from './components/Timeline'
 import Details from './components/Details'
 import RsvpForm from './components/RsvpForm'
 import Footer from './components/Footer'
+import MusicPlayer from './components/MusicPlayer'
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
       <Details />
       <RsvpForm />
       <Footer />
+      <MusicPlayer />
     </main>
   )
 }

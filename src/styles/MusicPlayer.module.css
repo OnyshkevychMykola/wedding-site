@@ -1,0 +1,28 @@
+.musicBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(61, 39, 20, 0.15);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  padding: 8px;
+}
+
+.musicBtn:hover {
+  opacity: 0.85;
+}
+
+.musicBtn svg {
+  width: 100%;
+  height: 100%;
+}
